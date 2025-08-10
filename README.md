@@ -26,6 +26,17 @@ The task requires extracting and classifying images from PDFs or URLs as **medic
 #### Why CLIP?
 Zero-shot learning eliminates the need for data labeling, which is crucial for medical domains with privacy constraints. It’s efficient (runs on CPU/MPS) and effectively handles diverse images via prompt engineering. Alternatives like fine-tuned ResNets were rejected due to the significant training overhead.
 
+
+| Feature               | CLIP ViT-B/32 | Fine-Tuned CNNs | Custom Transformer |
+|-----------------------|---------------|-----------------|--------------------|
+| Zero-Shot Capability  | ✅ Yes         | ❌ No            | ❌ No              |
+| Medical Privacy Safe  | ✅ Yes         | ⚠ Dataset risk  | ⚠ Dataset risk    |
+| Inference Speed       | ✅ Fast        | ⚠ Moderate      | ❌ Slow           |
+| Hardware Flexibility  | ✅ CPU/MPS/GPU | ⚠ GPU only      | ⚠ GPU only       |
+
+CLIP allows **text–image matching without supervision**, avoiding dataset creation while retaining high domain generalization.
+
+
 #### Ethical Considerations
 The approach avoids using sensitive data. Prompts are carefully tuned to reduce bias (e.g., by explicitly including “pathology slide” to correctly identify microscopic views).
 
@@ -87,12 +98,23 @@ Evaluation was performed on a test set of 50 images (20 from a PDF, 30 from a we
 **Future Work**: Expand the test dataset for a more robust statistical evaluation.
 
 ### Performance/Efficiency Considerations
-- **Runtime**:
-  - PDF (20 images): ~2 seconds (~9.9 img/sec on MPS).
-  - Website (30 images): ~1.4 seconds (~20.8 img/sec on MPS).
 - **Resource Use**: CLIP ViT-B/32 is lightweight, using ~500MB RAM on CPU. MPS acceleration provides a 2-3x speedup on Apple Silicon.
 - **Optimizations**: Processing is done per-image (no batching needed for zero-shot). Size filters are used to skip irrelevant small images.
 - **Trade-offs**: Zero-shot is extremely fast but may have lower accuracy on ambiguous images compared to fine-tuned models, which require significantly more data and compute resources.
+
+**Test Set:** 50 images (20 from PDFs, 30 from web)  
+
+| Source | Images | GT Medical | GT Non-Medical | Accuracy | Avg Conf. (Med) | Avg Conf. (Non-Med) |
+|--------|--------|-----------|----------------|----------|-----------------|---------------------|
+| PDF    | 20     | 11        | 9              | 100%     | 0.92            | 0.88                |
+| Web    | 30     | 27        | 3              | 100%     | 0.98            | 0.95                |
+| **Total** | **50** | **38**   | **12**         | **100%** | —               | —                   |
+
+**Runtime:**  
+- PDF: 20 images in ~2 sec (~9.9 img/sec, MPS)  
+- Web: 30 images in ~1.4 sec (~20.8 img/sec, MPS)  
+
+**Memory Use:** ~500 MB on CPU, 2–3× faster with Apple MPS  
 
 ---
 
@@ -135,7 +157,7 @@ python main.py "[https://www.pathologyoutlines.com/topic/breastmalignantdcis.htm
 Replace --device with cpu, mps, or cuda based on your hardware.
 
 ## Code Structure
-├- `main.py`: CLI entry point, orchestrates extraction and classification.
+- `main.py`: CLI entry point, orchestrates extraction and classification.
 
 - `src/data_loader.py`: Handles PDF page conversion and web image scraping.
 
