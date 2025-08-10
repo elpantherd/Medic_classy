@@ -99,8 +99,67 @@ Evaluation was performed on a test set of 50 images (20 from a PDF, 30 from a we
 ## ⚙️ Setup Guide
 
 ### 1. Prerequisites
-- Install Git: [https://git-scm.com/downloads](https://git-scm.com/downloads)
-- Clone the repository:
+- First, ensure you have Git installed from [git-scm.com/downloads](https://git-scm.com/downloads).
+- Clone the repository by running `git clone https://github.com/elpantherd/Medic_classy.git` and navigate into the new directory with `cd Medic_classy`.
+- Create a virtual environment by running `python3 -m venv venv`.
+- Activate the environment. On **Linux or macOS**, run `source venv/bin/activate`. On **Windows PowerShell**, run `.\venv\Scripts\Activate.ps1`.
+- Finally, install all required packages by running `pip install -r requirements.txt`.
+
+### 2. Install Poppler
+`Poppler` is a system dependency required for handling PDFs.
+- On **macOS**, you can install it via Homebrew by running `brew install poppler`.
+- On **Ubuntu/Debian** Linux systems, run `sudo apt-get update && sudo apt-get install -y poppler-utils`.
+- On **Windows**, you must download Poppler manually. Go to [this repository](https://github.com/oschwartz10612/poppler-windows/releases/), download the latest release, extract the archive, and add the full path to its `bin` folder to your system's PATH environment variable.
+
+### Platform Notes
+
+| OS      | Notes                                                              |
+| :------ | :----------------------------------------------------------------- |
+| **macOS** | Natively supports MPS acceleration on Apple Silicon (M1/M2/M3).    |
+| **Linux** | CUDA is recommended for acceleration if an NVIDIA GPU is available. |
+| **Windows** | Requires careful setup of Poppler PATH and GPU (CUDA) drivers.    |
+
+---
+
+## ▶️ Usage
+Run the main script from your activated virtual environment.
+
+- **Classify images from a PDF file:**
   ```bash
-  git clone [https://github.com/elpantherd/Medic_classy.git](https://github.com/elpantherd/Medic_classy.git)
-  cd Medic_classy
+  python main.py "/path/to/your/document.pdf" --output_dir "output/" --device cpu
+  ```
+- **Classify images from website**
+```bash
+python main.py "[https://www.pathologyoutlines.com/topic/breastmalignantdcis.html](https://www.pathologyoutlines.com/topic/breastmalignantdcis.html)" --output_dir "output/" --device mps
+```
+Replace --device with cpu, mps, or cuda based on your hardware.
+
+## Code Structure
+├── main.py                 # CLI entry point for the application
+├── src/
+│   ├── data_loader.py      # Handles PDF and web image extraction
+│   ├── model.py            # Defines the CLIP-based classifier
+│   ├── predictor.py        # Runs classification with specific prompts
+│   └── utils.py            # Utility functions (e.g., logging)
+├── requirements.txt        # Project dependencies
+└── ...
+
+---
+
+
+## License
+
+
+MIT License — see [LICENSE](LICENSE) for full terms.
+
+
+---
+
+
+## Contact
+
+
+For questions or suggestions, please open an issue or contact at [dthayalan760@gmail.com].
+
+
+--- 
