@@ -13,12 +13,12 @@ A robust, zero-shot image classification tool that distinguishes between medical
 
 ## Problem Understanding
 The task requires extracting and classifying images from PDFs or URLs as medical (e.g., scans, pathology slides) or non-medical (e.g., diagrams, logos). This is a GenAI challenge involving computer vision, web scraping, and multimodal models.
-Core Approach
-	•	Image Extraction:
-	•	PDFs: Use pdf2image to convert each page to an image (reliable for medical documents).
-	•	URLs: Scrape with BeautifulSoup, filtering for JPG/PNG sources and skipping small icons/logos (optimized for medical sites like PathologyOutlines.com).
-	•	Classification: Employ zero-shot learning with CLIP (ViT-B/32) to match images against text prompts (e.g., “a diagnostic medical image like an MRI or pathology slide” vs. “a non-medical diagram”).
-	•	Custom prompts for input types: General for PDFs, website-adapted for scraped content.
+- Core Approach
+ - Image Extraction:
+ - PDFs: Use pdf2image to convert each page to an image (reliable for medical documents).
+ - URLs: Scrape with BeautifulSoup, filtering for JPG/PNG sources and skipping small icons/logos (optimized for medical sites like PathologyOutlines.com).
+ - Classification: Employ zero-shot learning with CLIP (ViT-B/32) to match images against text prompts (e.g., “a diagnostic medical image like an MRI or pathology slide” vs. “a non-medical diagram”).
+ - Custom prompts for input types: General for PDFs, website-adapted for scraped content.
 	•	Output: JSON with per-image labels, confidences, and summaries (e.g., lists of medical pages/sections).
 	•	Tech Stack: Python, Torch, open_clip, pdf2image, requests, BeautifulSoup. No custom training—leverages CLIP’s pre-trained capabilities.
 Reasoning for Choices
