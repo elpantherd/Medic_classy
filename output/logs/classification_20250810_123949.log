@@ -1,0 +1,19 @@
+2025-08-10 12:39:49,423 [INFO] [src.utils] - Logging initialized. Log file at: output/logs/classification_20250810_123949.log
+2025-08-10 12:39:49,423 [INFO] [__main__] - Starting image extraction from: https://www.pathologyoutlines.com/topic/breastmalignantdcis.html
+2025-08-10 12:39:49,423 [INFO] [src.data_loader] - Fetching page: https://www.pathologyoutlines.com/topic/breastmalignantdcis.html
+2025-08-10 12:39:49,634 [INFO] [src.data_loader] - Found 47 potential images. Filtering and downloading...
+2025-08-10 12:40:20,413 [INFO] [src.data_loader] - Successfully extracted 30 images from URL.
+2025-08-10 12:40:20,415 [INFO] [__main__] - Successfully extracted 30 images.
+2025-08-10 12:40:20,415 [INFO] [root] - Parsing model identifier. Schema: None, Identifier: ViT-B-32
+2025-08-10 12:40:20,415 [INFO] [root] - Loaded built-in ViT-B-32 model config.
+2025-08-10 12:40:20,915 [INFO] [root] - Instantiating model architecture: CLIP
+2025-08-10 12:40:22,089 [INFO] [root] - Loading full pretrained weights from: /Users/elpantherd/.cache/huggingface/hub/models--timm--vit_base_patch32_clip_224.openai/snapshots/a6f597a30f7b82c51704746581f9a4e41421e878/open_clip_model.safetensors
+2025-08-10 12:40:22,145 [INFO] [root] - Final image preprocessing configuration set: {'size': (224, 224), 'mode': 'RGB', 'mean': (0.48145466, 0.4578275, 0.40821073), 'std': (0.26862954, 0.26130258, 0.27577711), 'interpolation': 'bicubic', 'resize_mode': 'shortest', 'fill_color': 0}
+2025-08-10 12:40:22,145 [INFO] [root] - Model ViT-B-32 creation process complete.
+2025-08-10 12:40:22,145 [INFO] [root] - Parsing tokenizer identifier. Schema: None, Identifier: ViT-B-32
+2025-08-10 12:40:22,145 [INFO] [root] - Attempting to load config from built-in: ViT-B-32
+2025-08-10 12:40:22,145 [INFO] [root] - Using default SimpleTokenizer.
+2025-08-10 12:40:22,374 [INFO] [src.predictor] - CLIP ImageClassifier initialized on device: mps
+2025-08-10 12:40:22,374 [INFO] [__main__] - Classifier initialized. Starting prediction...
+2025-08-10 12:40:23,839 [INFO] [__main__] - Prediction complete.
+2025-08-10 12:40:23,840 [INFO] [__main__] - Results saved to output/results_www.pathologyoutlines.com_topic_breastmalignantdci_20250810_124023.json
