@@ -76,7 +76,8 @@ I evaluated on two test cases from the attached JSON files (20 PDF images + 30 w
 **Overall Accuracy:** 100% across 50 images.  
 **Limitations:** Small set; real-world accuracy may vary with image quality.  
 **Future Work:** Expand dataset for robust statistical evaluation.
-**Performance/Efficiency Considerations**
+
+- **Performance/Efficiency Considerations**
 	- Runtime: PDF (20 images): ~2 seconds (9.93 img/sec on MPS). Website (30 images): ~1.4 seconds (20.8 img/sec). Scalable to larger inputs.
 	- Resource Use: CLIP is lightweight (~63M parameters); uses ~500MB RAM on CPU. MPS acceleration boosts speed 2-3x on Apple Silicon.
 	- Efficiency Optimizations: Single-image processing (no batching needed for zero-shot); size filters skip irrelevant images. Potential improvements: Parallel scraping or GPU batching for 100+ images.
