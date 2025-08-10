@@ -58,19 +58,25 @@ I selected OpenAI's **CLIP (ViT-B/32)** for these reasons:
 Alternatives like CNNs or fine-tuned models require extensive labeled data and training time, impractical for rapid development and assessment.
 
 ## Accuracy Results on a Small Validation/Test Set
-I evaluated on two test cases from the attached JSON files (20 PDF images + 30 website images = 50 total). Ground truth was manually assigned based on content (e.g., all pathology slides as medical; logos as non-medical).
-	- PDF Test Set (20 images from Document 1.pdf):
-	- Ground Truth: 11 medical (e.g., scans), 9 non-medical (e.g., diagrams).
-	- Model Results: 11 medical, 9 non-medical (100% match).
-	- Accuracy: 100% (all correct; average confidence 0.92 for medical, 0.88 for non-medical).
-	- **Notes: High performance on mixed content; no misclassifications.**
-	- Website Test Set (30 images from PathologyOutlines DCIS page):
-	- Ground Truth: 27 medical (histology slides/tissue images), 3 non-medical (e.g., missing image placeholders, icons).
-	- Model Results: 27 medical, 3 non-medical (100% match).
-	- Accuracy: 100% (average confidence 0.98 for medical, 0.95 for non-medical).
-	- **Notes: Excellent on pathology-focused site; prompts handled microscopic views well.**
-Overall Accuracy: 100% across 50 images. Limitations: Small set; real-world accuracy may vary with image quality (tested on clear examples). 
-Future work: Expand to larger datasets for robust metrics.
+
+I evaluated on two test cases from the attached JSON files (20 PDF images + 30 website images = 50 total). Ground truth was manually assigned based on content (e.g., all pathology slides as medical, logos as non-medical).
+
+- **PDF Test Set (20 images from Document 1.pdf):**
+  - Ground Truth: 11 medical (e.g., scans), 9 non-medical (e.g., diagrams).
+  - Model Results: 11 medical, 9 non-medical (100% match).
+  - Accuracy: 100% (all correct; average confidence 0.92 for medical, 0.88 for non-medical).
+  - **Notes:** High performance on mixed content; no misclassifications.
+
+- **Website Test Set (30 images from PathologyOutlines DCIS page):**
+  - Ground Truth: 27 medical (e.g., histology/tissue images), 3 non-medical (e.g., missing placeholders, icons).
+  - Model Results: 27 medical, 3 non-medical (100% match).
+  - Accuracy: 100% (average confidence 0.98 for medical, 0.95 for non-medical).
+  - **Notes:** Excellent on pathology-focused site; prompts handled microscopic views well.
+
+**Overall Accuracy:** 100% across 50 images.  
+**Limitations:** Small set; real-world accuracy may vary with image quality.  
+**Future Work:** Expand dataset for robust statistical evaluation.
+
 
 **Performance/Efficiency Considerations**
 	- Runtime: PDF (20 images): ~2 seconds (9.93 img/sec on MPS). Website (30 images): ~1.4 seconds (20.8 img/sec). Scalable to larger inputs.
