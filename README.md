@@ -152,7 +152,7 @@ Run the main script from your activated virtual environment.
   ```
 - **Classify images from website**
 ```bash
-python main.py "[https://www.pathologyoutlines.com/topic/breastmalignantdcis.html](https://www.pathologyoutlines.com/topic/breastmalignantdcis.html)" --output_dir "output/" --device mps
+python main.py "https://www.pathologyoutlines.com/topic/breastmalignantdcis.html" --output_dir "output/" --device mps
 ```
 Replace --device with cpu, mps, or cuda based on your hardware.
 
