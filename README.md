@@ -135,14 +135,17 @@ python main.py "[https://www.pathologyoutlines.com/topic/breastmalignantdcis.htm
 Replace --device with cpu, mps, or cuda based on your hardware.
 
 ## Code Structure
-├── main.py                 # CLI entry point for the application
-├── src/
-│   ├── data_loader.py      # Handles PDF and web image extraction
-│   ├── model.py            # Defines the CLIP-based classifier
-│   ├── predictor.py        # Runs classification with specific prompts
-│   └── utils.py            # Utility functions (e.g., logging)
-├── requirements.txt        # Project dependencies
-└── ...
+├- `main.py`: CLI entry point, orchestrates extraction and classification.
+
+- `src/data_loader.py`: Handles PDF page conversion and web image scraping.
+
+- `src/model.py`: Defines the CLIP-based zero-shot classifier.
+
+- `src/predictor.py`: Runs classification with input-specific prompts.
+
+- `src/utils.py`: Logging setup and helpers.
+
+
 
 ---
 
